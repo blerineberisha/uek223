@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity(name = "blog")
+@Entity(name = "blog_posts")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -32,8 +32,4 @@ public class BlogPost {
             inverseJoinColumns = @JoinColumn(
                     name = "post_id", referencedColumnName = "id"))
     private Set<BlogPost> posts;
-
-
-    public BlogPost(Object o, String stuff, String blablablablablabla, String blablablablabla, String funny_stuff) {
-    }
 }

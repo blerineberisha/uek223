@@ -4,6 +4,7 @@ import com.example.demo.domain.appUser.User;
 import com.example.demo.domain.appUser.UserService;
 import com.example.demo.domain.authority.Authority;
 import com.example.demo.domain.authority.AuthorityRepository;
+import com.example.demo.domain.blogPost.BlogPost;
 import com.example.demo.domain.role.Role;
 import com.example.demo.domain.role.RoleRepository;
 import com.example.demo.domain.role.RoleServiceImpl;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Component

@@ -1,4 +1,5 @@
 package com.example.demo;
+
 import com.example.demo.domain.appUser.User;
 import com.example.demo.domain.appUser.UserService;
 import com.example.demo.domain.authority.Authority;
@@ -36,15 +37,33 @@ class AppStartupRunner implements ApplicationRunner {
 //        e.g. to add a user or role to the DB (only for testing)
 
 //        Authorities
-        Authority read_auth=new Authority(null,"READ");
+        Authority read_auth = new Authority(null, "READ");
         authorityRepository.save(read_auth);
 
+        Authority write_auth = new Authority(null, "WRITE");
+        authorityRepository.save(write_auth);
+
+        Authority allrights = new Authority(null, "ALLRIGHTS");
+        authorityRepository.save(allrights);
+
 //        Roles
-        Role default_role = new Role(null, "DEFAULT",Arrays.asList(read_auth));
+        Role default_role = new Role(null, "READER", Arrays.asList(read_auth));
         roleRepository.save(default_role);
 
-        userService.saveUser(new User(null, "james","james.bond@mi6.com","bond", Set.of(default_role)));
-        userService.addRoleToUser("james", "DEFAULT");
+        Role user_role = new Role(null, "USER", Arrays.asList(write_auth));
+        roleRepository.save(user_role);
+
+        Role admin_role = new Role(null, "ADMIN", Arrays.asList(allrights));
+        roleRepository.save(admin_role);
+
+        userService.saveUser(new User(null, "james", "james.bond@mi6.com", "bond", Set.of(default_role)));
+        userService.addRoleToUser("james", "READ");
+
+        userService.saveUser(new User(null, "max", "max.muster@gmail.com", "muster", Set.of(user_role)));
+        userService.addRoleToUser("max", "WRITE");
+
+        userService.saveUser(new User(null, "bob", "bob.builder@gmail.com", "builder", Set.of(admin_role)));
+        userService.addRoleToUser("bob", "ALLRIGHTS");
     }
 }
 

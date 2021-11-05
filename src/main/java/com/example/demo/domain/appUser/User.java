@@ -7,10 +7,12 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity(name="users")
+@Entity(name = "users")
 //from lombok
-@Getter@Setter
-@NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +30,5 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
-
-
 
 }

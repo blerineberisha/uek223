@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/blogpost/").permitAll()
                 .and()
                 .formLogin();
-//        http
-//                .csrf().disable();
+        http
+                .csrf().disable();
     }
 }

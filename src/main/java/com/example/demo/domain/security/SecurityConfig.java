@@ -33,14 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/blogpost").permitAll()
                 .and()
-                // some more method calls
                 .formLogin();
 
         http.httpBasic().and()
                 .authorizeRequests()
                 .antMatchers("/blogpost/").permitAll()
                 .and()
-                // some more method calls
                 .formLogin();
+//        http
+//                .csrf().disable();
     }
 }

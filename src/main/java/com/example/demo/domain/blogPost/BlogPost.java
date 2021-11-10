@@ -12,8 +12,8 @@ public class BlogPost {
     private UUID id;
     @Column(name="title")
     private String title;
-    @Column(name="author")
-    private String author;
+    @Column(name="user_id")
+    private UUID user_id;
     @Column(name="text")
     private String text;
     @Column(name="category")
@@ -35,12 +35,12 @@ public class BlogPost {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public UUID getUser_id() {
+        return user_id;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setUser_id(UUID user_id) {
+        this.user_id = user_id;
     }
 
     public String getText() {

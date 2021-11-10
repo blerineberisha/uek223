@@ -9,22 +9,23 @@ import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity(name = "blog_posts")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "blog_posts")
 public class BlogPost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+    @Column(name="title")
     private String title;
+    @Column(name="author")
     private String author;
+    @Column(name="text")
     private String text;
+    @Column(name="category")
     private String category;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "users_posts",
             joinColumns = @JoinColumn(

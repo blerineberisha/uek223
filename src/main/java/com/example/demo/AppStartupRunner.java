@@ -36,6 +36,8 @@ class AppStartupRunner implements ApplicationRunner {
 //        RUN YOUR STARTUP CODE HERE
 //        e.g. to add a user or role to the DB (only for testing)
 
+
+
 //        Authorities
         Authority read_auth = new Authority(null, "READ");
         authorityRepository.save(read_auth);

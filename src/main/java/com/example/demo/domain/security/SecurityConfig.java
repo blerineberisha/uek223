@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
  @EnableWebSecurity @RequiredArgsConstructor @EnableGlobalMethodSecurity(prePostEnabled = true)
 
@@ -20,7 +21,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
      @Autowired
      public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
+         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+         auth.inMemoryAuthentication()
+                 .withUser("james")
+                 .password(encoder.encode("bond"))
+                 .roles("READER");
                  auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
      }
 
@@ -28,9 +33,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and()
                 .authorizeRequests()
-                .antMatchers("/**").hasAuthority("READ")
+                .antMatchers("/login").permitAll()
                 .and()
                 // some more method calls
                 .formLogin();
-    }
+
+        http.httpBasic().and()
+                .authorizeRequests()
+                .antMatchers("/api/").permitAll()
+                .and()
+                .formLogin();
+
+     }
  }

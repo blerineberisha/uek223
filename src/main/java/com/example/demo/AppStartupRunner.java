@@ -66,6 +66,7 @@ class AppStartupRunner implements ApplicationRunner {
 
         userService.saveUser(new User(null, "bob", "bob.builder@gmail.com", "builder", Set.of(admin_role)));
         userService.addRoleToUser("bob", "ALLRIGHTS");
+
     }
 }
 

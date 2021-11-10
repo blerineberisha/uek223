@@ -1,10 +1,12 @@
 package com.example.demo;
 
 import com.example.demo.domain.appUser.User;
+import com.example.demo.domain.appUser.UserController;
 import com.example.demo.domain.appUser.UserService;
 import com.example.demo.domain.authority.Authority;
 import com.example.demo.domain.authority.AuthorityRepository;
 import com.example.demo.domain.blogPost.BlogPost;
+import com.example.demo.domain.blogPost.BlogPostService;
 import com.example.demo.domain.role.Role;
 import com.example.demo.domain.role.RoleRepository;
 import com.example.demo.domain.role.RoleServiceImpl;
@@ -13,6 +15,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +37,9 @@ class AppStartupRunner implements ApplicationRunner {
     private final RoleRepository roleRepository;
     @Autowired
     private final AuthorityRepository authorityRepository;
+    @Autowired
+    private final BlogPostService blogPostService;
+    UserController userController;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -67,6 +75,8 @@ class AppStartupRunner implements ApplicationRunner {
         userService.saveUser(new User(null, "bob", "bob.builder@gmail.com", "builder", Set.of(admin_role)));
         userService.addRoleToUser("bob", "ALLRIGHTS");
 
+
+        /*BlogPost blogPost = new BlogPost(null, "Title", userController.getCurrentUserUUID(), "text", "category");
+        blogPostService.save(blogPost);*/
     }
 }
-

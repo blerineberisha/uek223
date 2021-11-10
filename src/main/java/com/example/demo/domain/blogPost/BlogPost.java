@@ -10,14 +10,23 @@ public class BlogPost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(name="title")
+    @Column(name = "title")
     private String title;
-    @Column(name="user_id")
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID user_id;
-    @Column(name="text")
+    @Column(name = "text")
     private String text;
-    @Column(name="category")
+    @Column(name = "category")
     private String category;
+
+    public BlogPost(UUID id, String title, UUID user_id, String text, String category) {
+        this.id = id;
+        this.title = title;
+        this.user_id = user_id;
+        this.text = text;
+        this.category = category;
+    }
 
     public UUID getId() {
         return id;

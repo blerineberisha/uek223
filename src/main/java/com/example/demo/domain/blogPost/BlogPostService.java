@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Service
 public class BlogPostService {
-    private BlogPostRepository blogPostRepository;
+    private final BlogPostRepository blogPostRepository;
 
     @Autowired
     public BlogPostService(BlogPostRepository blogPostRepository){

@@ -25,7 +25,13 @@ public class BlogPostController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<BlogPost> save(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
+    public ResponseEntity<BlogPost> save(@RequestBody BlogPost blogPost) {
         return ResponseEntity.ok().body(blogPostService.save(blogPost));
     }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<BlogPost> updateBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
+//        return ResponseEntity.ok().body(blogPostService.updateBlogPost(blogPost, id));
+//    }
+
 }

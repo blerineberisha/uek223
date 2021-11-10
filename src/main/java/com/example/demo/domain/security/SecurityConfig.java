@@ -35,5 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // some more method calls
                 .formLogin();
+
+        http.httpBasic().and()
+                .authorizeRequests()
+                .antMatchers("/").permitAll()
+                .and()
+                // some more method calls
+                .formLogin();
     }
 }

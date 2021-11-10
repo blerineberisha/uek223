@@ -21,11 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
      @Autowired
      public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-         auth.inMemoryAuthentication()
-                 .withUser("james")
-                 .password(encoder.encode("bond"))
-                 .roles("READER");
                  auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
      }
 

@@ -39,7 +39,6 @@ class AppStartupRunner implements ApplicationRunner {
     private final AuthorityRepository authorityRepository;
     @Autowired
     private final BlogPostService blogPostService;
-    UserController userController;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {

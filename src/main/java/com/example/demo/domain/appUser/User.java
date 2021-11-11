@@ -1,5 +1,6 @@
 package com.example.demo.domain.appUser;
 
+import com.example.demo.domain.blogPost.BlogPost;
 import com.example.demo.domain.role.Role;
 import lombok.*;
 
@@ -30,5 +31,4 @@ public class User {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles;
-
 }

@@ -1,9 +1,13 @@
 package com.example.demo.domain.blogPost;
 
+import com.example.demo.domain.appUser.User;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
+@NoArgsConstructor
 @Entity
 @Table(name = "blog_posts")
 public class BlogPost {
@@ -68,20 +72,15 @@ public class BlogPost {
         this.category = category;
     }
 
-    public Set<BlogPost> getPosts() {
-        return posts;
-    }
 
-    public void setPosts(Set<BlogPost> posts) {
-        this.posts = posts;
-    }
-
-    @ManyToMany
+    @OneToOne
     @JoinTable(
             name = "users_posts",
             joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
+                    name = "post_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "post_id", referencedColumnName = "id"))
-    private Set<BlogPost> posts;
+                    name = "user_id", referencedColumnName = "id")
+    )
+    private User blogPosts;
 }
+

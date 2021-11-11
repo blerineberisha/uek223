@@ -74,8 +74,7 @@ class AppStartupRunner implements ApplicationRunner {
         userService.saveUser(new User(null, "bob", "bob.builder@gmail.com", "builder", Set.of(admin_role)));
         userService.addRoleToUser("bob", "ALLRIGHTS");
 
-
-        /*BlogPost blogPost = new BlogPost(null, "Title", userController.getCurrentUserUUID(), "text", "category");
-        blogPostService.save(blogPost);*/
+        BlogPost blogPost = new BlogPost(null, "Title", userService.getUser("max").getId(), "text", "category");
+        blogPostService.save(blogPost);
     }
 }

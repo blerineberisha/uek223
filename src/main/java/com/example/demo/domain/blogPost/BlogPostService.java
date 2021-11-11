@@ -32,6 +32,7 @@ public class BlogPostService {
     }
 
     public BlogPost updateBlogPost(BlogPost blogPost, UUID id){
+        blogPost.setId(id);
         blogPost.setCategory(blogPost.getCategory());
         blogPost.setTitle(blogPost.getTitle());
         blogPost.setText(blogPost.getText());

@@ -72,15 +72,14 @@ public class BlogPost {
         this.category = category;
     }
 
-
-    @OneToOne
-    @JoinTable(
-            name = "users_posts",
-            joinColumns = @JoinColumn(
-                    name = "post_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id")
-    )
-    private User blogPosts;
+//    @OneToOne
+//    @JoinTable(
+//            name = "users_posts",
+//            joinColumns = @JoinColumn(
+//                    name = "post_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(
+//                    name = "user_id", referencedColumnName = "id")
+//    )
+//    private User blogPosts;
 }
 

@@ -1,6 +1,7 @@
 package com.example.demo.domain.appUser;
 
 
+import com.example.demo.domain.blogPost.BlogPost;
 import com.example.demo.domain.role.Role;
 
 import javax.management.InstanceAlreadyExistsException;
@@ -11,9 +12,16 @@ import java.util.UUID;
 
 public interface UserService {
     User saveUser(User user) throws InstanceAlreadyExistsException;
+
     Role saveRole(Role role);
+
     void addRoleToUser(String username, String rolename);
+
     User getUser(String username);
+
     Optional<User> findById(UUID id) throws InstanceNotFoundException;
+
     List<User> findAll();
+
+
 }

@@ -19,13 +19,14 @@ public class BlogPostController {
         this.blogPostService = blogPostService;
     }
 
-    @GetMapping("")
+    @GetMapping("/")
     public List<BlogPost> findAll() {
         return this.blogPostService.getAllBlogPosts();
     }
 
     @PostMapping("/")
     //@PreAuthorize("hasRole('USER or ADMIN')")
+    //@PreAuthorize("hasRole('USER', 'ADMIN')")
     public BlogPost save(@RequestBody BlogPost blogPost) {
         return this.blogPostService.save(blogPost);
     }

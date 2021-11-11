@@ -2,6 +2,7 @@ package com.example.demo.domain.blogPost;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class BlogPostController {
     }
 
     @PostMapping("/")
+    //@PreAuthorize("hasRole('USER or ADMIN')")
     public ResponseEntity<BlogPost> save(@RequestBody BlogPost blogPost) {
         return ResponseEntity.ok().body(blogPostService.save(blogPost));
     }

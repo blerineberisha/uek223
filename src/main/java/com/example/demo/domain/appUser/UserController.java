@@ -5,19 +5,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.UUID;
 
-@RestController @RequestMapping("/api")
+@RestController
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class UserController {
-//    ADD YOUR ENDPOINT MAPPINGS HERE
-private final UserService userService;
+    //    ADD YOUR ENDPOINT MAPPINGS HERE
+    private final UserService userService;
+    //private UUID currentUserUUID = null;
 
     @GetMapping("/")
-    public ResponseEntity<String> HomeTest(){
+    public ResponseEntity<String> HomeTest() {
         return ResponseEntity.ok().body("Hello World");
     }
 
@@ -27,4 +33,13 @@ private final UserService userService;
         return new ResponseEntity<Collection<User>>(userService.findAll(), HttpStatus.OK);
     }
 
+    /*public UUID getCurrentUserUUID() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserUUID = getCurrentUserUUID();
+        } else {
+            currentUserUUID = null;
+        }
+        return currentUserUUID;
+    }*/
 }

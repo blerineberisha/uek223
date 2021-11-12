@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         */
         http.csrf().disable();
-         http.httpBasic().and().authorizeRequests().antMatchers("/blogpost/").hasAnyAuthority("WRITE", "EXECUTE")
+        http.httpBasic().and().authorizeRequests().antMatchers("/blogpost/{id}").hasAnyAuthority("EXECUTE").antMatchers("/blogpost/").hasAnyAuthority("WRITE", "EXECUTE")
                 .antMatchers("/blogpost").permitAll().and().formLogin();
 
 

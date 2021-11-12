@@ -30,13 +30,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().csrf().disable()
-                .authorizeRequests().anyRequest().authenticated();
-
-        /*
-         http.httpBasic().and().authorizeRequests().antMatchers("/blogpost/").hasRole("ADMIN")
+       /* http.httpBasic().and().csrf().disable()
+                .authorizeRequests().anyRequest().authenticated().antMatchers("/blogpost/").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/blogpost").permitAll().and().formLogin();
-        http.csrf().disable();*/
+
+        */
+        http.csrf().disable();
+         http.httpBasic().and().authorizeRequests().antMatchers("/blogpost/").hasAnyAuthority("WRITE", "EXECUTE")
+                .antMatchers("/blogpost").permitAll().and().formLogin();
+
 
     }
 }

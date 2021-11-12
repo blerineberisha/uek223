@@ -19,7 +19,7 @@ public class BlogPostController {
         this.blogPostService = blogPostService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<BlogPost> findAll() {
         return this.blogPostService.getAllBlogPosts();
     }

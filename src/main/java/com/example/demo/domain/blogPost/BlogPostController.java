@@ -24,19 +24,22 @@ public class BlogPostController {
         return this.blogPostService.getAllBlogPosts();
     }
 
-    //@PreAuthorize("hasRole('USER or ADMIN')")
-    //@PreAuthorize("hasRole('USER', 'ADMIN')")
+    @GetMapping("/{field}")
+    public List<BlogPost> findAllWithSorting(@PathVariable String field) {
+        return this.blogPostService.getAllBlogPostsWithSorting(field);
+    }
+
     @PostMapping("/")
     public BlogPost save(@RequestBody BlogPost blogPost) {
         return this.blogPostService.save(blogPost);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/search/{id}")
     public BlogPost updateBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
         return this.blogPostService.updateBlogPost(blogPost, id);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteBlogPost(@PathVariable UUID id){
         this.blogPostService.deleteById(id);
     }

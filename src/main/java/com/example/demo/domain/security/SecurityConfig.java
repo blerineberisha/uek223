@@ -35,10 +35,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/blogpost").permitAll().and().formLogin();
 
         */
-        http.csrf().disable();
-        http.httpBasic().and().authorizeRequests().antMatchers("/blogpost/{id}").hasAnyAuthority("EXECUTE").antMatchers("/blogpost/").hasAnyAuthority("WRITE", "EXECUTE")
-                .antMatchers("/blogpost").permitAll().and().formLogin();
 
+        http.csrf().disable();
+        http.httpBasic().and().authorizeRequests().antMatchers("/blogpost/search/{id}").hasAnyAuthority("EXECUTE")
+                .and().authorizeRequests()
+                .antMatchers("/blogpost/delete/{id}").hasAnyAuthority("EXECUTE")
+                .and().authorizeRequests()
+                .antMatchers("/blogpost/{field}").permitAll()
+                .and().authorizeRequests()
+                .antMatchers("/blogpost/").hasAuthority("WRITE")
+                .and().formLogin();
 
     }
+
+
 }

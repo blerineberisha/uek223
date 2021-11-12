@@ -1,6 +1,7 @@
 package com.example.demo.domain.blogPost;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,10 @@ public class BlogPostService {
 
     public List<BlogPost> getAllBlogPosts(){
         return this.blogPostRepository.findAll();
+    }
+
+    public List<BlogPost> getAllBlogPostsWithSorting(String field){
+        return this.blogPostRepository.findAll(Sort.by(Sort.Direction.ASC, field));
     }
 
     public void deleteById(UUID id){

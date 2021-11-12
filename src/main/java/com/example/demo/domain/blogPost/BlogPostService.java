@@ -1,6 +1,8 @@
 package com.example.demo.domain.blogPost;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,11 @@ public class BlogPostService {
 
     public List<BlogPost> getAllBlogPostsWithSorting(String field){
         return this.blogPostRepository.findAll(Sort.by(Sort.Direction.ASC, field));
+    }
+
+    public Page<BlogPost> getAllBlogPostWithPagination(int offset, int pageSize){
+        Page<BlogPost> blogPosts = this.blogPostRepository.findAll(PageRequest.of(offset, pageSize));
+        return blogPosts;
     }
 
     public void deleteById(UUID id){

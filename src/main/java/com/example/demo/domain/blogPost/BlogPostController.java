@@ -1,6 +1,7 @@
 package com.example.demo.domain.blogPost;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,12 @@ public class BlogPostController {
         return this.blogPostService.getAllBlogPostsWithSorting(field);
     }
 
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    public Page<BlogPost> findAllWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
+        Page<BlogPost> blogPosts = blogPostService.getAllBlogPostWithPagination(offset, pageSize);
+        return blogPosts;
+    }
+
     @PostMapping("/")
     public BlogPost save(@RequestBody BlogPost blogPost) {
         return this.blogPostService.save(blogPost);
@@ -40,7 +47,7 @@ public class BlogPostController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteBlogPost(@PathVariable UUID id){
+    public void deleteBlogPost(@PathVariable UUID id) {
         this.blogPostService.deleteById(id);
     }
 

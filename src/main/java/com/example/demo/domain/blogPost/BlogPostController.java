@@ -24,9 +24,9 @@ public class BlogPostController {
         return this.blogPostService.getAllBlogPosts();
     }
 
-    @PostMapping("/")
     //@PreAuthorize("hasRole('USER or ADMIN')")
     //@PreAuthorize("hasRole('USER', 'ADMIN')")
+    @PostMapping("/")
     public BlogPost save(@RequestBody BlogPost blogPost) {
         return this.blogPostService.save(blogPost);
     }

@@ -1,9 +1,7 @@
 package com.example.demo.domain.security;
 
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsService userDetailsService;
@@ -24,18 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       /* http.httpBasic().and().csrf().disable()
-                .authorizeRequests().anyRequest().authenticated().antMatchers("/blogpost/").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/blogpost").permitAll().and().formLogin();
-
-        */
-
         http.csrf().disable();
         http.httpBasic().and().authorizeRequests().antMatchers("/blogpost/search/{id}").hasAnyAuthority("EXECUTE")
                 .and().authorizeRequests()
@@ -47,6 +39,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().formLogin();
 
     }
-
-
 }

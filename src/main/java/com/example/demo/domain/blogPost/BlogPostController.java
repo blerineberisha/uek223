@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @RequestMapping("/blogpost")
 @RestController
+@Transactional(isolation = Isolation.REPEATABLE_READ)
 public class BlogPostController {
     private BlogPostService blogPostService;
 

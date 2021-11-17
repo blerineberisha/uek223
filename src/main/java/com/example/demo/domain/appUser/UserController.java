@@ -17,6 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
+@Transactional(isolation = Isolation.REPEATABLE_READ)
 public class UserController {
     //    ADD YOUR ENDPOINT MAPPINGS HERE
     private final UserService userService;

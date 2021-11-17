@@ -73,7 +73,6 @@ public class BlogPostController {
      * @return returns updated blog post
      */
     @PutMapping("/search/{id}")
-    @PreAuthorize("@blogPostSecurity.hasUserId(#id) || hasAuthority('ADMIN')")
     public BlogPost updateBlogPost(@PathVariable("id") UUID id, @RequestBody BlogPost blogPost) {
         return this.blogPostService.updateBlogPost(blogPost, id);
     }

@@ -61,11 +61,13 @@ public class BlogPostService {
      * @return saves the updated blog post to the database and returns the updated blog post
      */
     public BlogPost updateBlogPost(BlogPost blogPost, UUID id) {
-            blogPost.setCategory(blogPost.getCategory());
-            blogPost.setId(id);
-            blogPost.setTitle(blogPost.getTitle());
-            blogPost.setText(blogPost.getText());
-            final BlogPost updatedBlogPost = blogPostRepository.save(blogPost);
-            return updatedBlogPost;
+        BlogPost old = getBlogPost(id);
+        blogPost.setCategory(blogPost.getCategory());
+        blogPost.setAuthor(old.getAuthor());
+        blogPost.setId(id);
+        blogPost.setTitle(blogPost.getTitle());
+        blogPost.setText(blogPost.getText());
+        final BlogPost updatedBlogPost = blogPostRepository.save(blogPost);
+        return updatedBlogPost;
     }
 }

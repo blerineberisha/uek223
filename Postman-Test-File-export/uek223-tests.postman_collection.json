@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "f52a7f25-c3b5-474b-85c9-5efb98362712",
+		"name": "uek223-tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "BlogPostController",
+			"item": [
+				{
+					"name": "Test if Titles are in ascending/descending order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Validate that the response values are sortet by title in 'asc', or 'desc'\", () => {\r",
+									"    let response = pm.response.json();\r",
+									"     let array = [];\r",
+									"    response.forEach(function(blogPost) {\r",
+									"    array.push(blogPost.title);\r",
+									"});\r",
+									"let isAscending = array => array.slice(1)\r",
+									"                        .map((e,i) => e > a[i])\r",
+									"                        .every(x => x);\r",
+									"                         console.log(array);\r",
+									"                        if(array !=0) {\r",
+									"                            console.log(\"Test passed\")\r",
+									"                        } else {\r",
+									"                            console.log(\"Test not passed\")\r",
+									"                        }\r",
+									"                       \r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/blogpost/title",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogpost",
+								"title"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check if Post has data and user has permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"let response = pm.response.json();\r",
+									"pm.test(\"Body has data\", function () {\r",
+									"    if(response != null && pm.response.to.have.status(200)){\r",
+									"        console.log(\"Test passed\")\r",
+									"    } else {\r",
+									"        console.log(\"Test not passed\")\r",
+									"    }\r",
+									"})\r",
+									"  \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "builder",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "bob",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"new Post\",\r\n        \"text\": \"new Post\",\r\n        \"category\": \"category\"\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/blogpost/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"blogpost",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -71,5 +73,26 @@ public class BlogPostService {
         blogPost.setText(blogPost.getText());
         final BlogPost updatedBlogPost = blogPostRepository.save(blogPost);
         return updatedBlogPost;
+    }
+
+    /**
+     *
+     * @return returns the current user's username, taken from the request header sent with the request
+     */
+    public String getCurrentUsername() {
+        //declare the username
+        String username;
+        //creates object from context and gets currently logged in user as object
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        /*if the principal is an instance of the UserDetail class, the username equals get username from
+         principal of UserDetails */
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            /*if principal is not an instance of UserDetails, username equals principal (which is the logged in user)
+            converted to a string*/
+            username = principal.toString();
+        }
+        return username;
     }
 }

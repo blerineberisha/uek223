@@ -17,9 +17,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 @Transactional(isolation= Isolation.REPEATABLE_READ)
 public class UserController {
-    //    ADD YOUR ENDPOINT MAPPINGS HERE
     private final UserService userService;
-    //private UUID currentUserUUID = null;
 
 
     @GetMapping("/")

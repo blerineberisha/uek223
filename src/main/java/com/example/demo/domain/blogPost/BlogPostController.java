@@ -60,6 +60,7 @@ public class BlogPostController {
      */
     @PostMapping("/")
     public BlogPost save(@RequestBody BlogPost blogPost) {
+        blogPost.setAuthor(blogPostService.getCurrentUsername());
         return this.blogPostService.save(blogPost);
     }
 
@@ -83,4 +84,18 @@ public class BlogPostController {
         this.blogPostService.deleteById(id);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public BlogPost getSinglePost(@PathVariable UUID id) {
+        return this.blogPostService.getBlogPost(id);
+    }
+
+    @GetMapping("/current")
+    public String getCurrent() {
+        return blogPostService.getCurrentUsername().toString();
+    }
 }

@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "users")
-//from lombok
 @Getter
 @Setter
 @NoArgsConstructor

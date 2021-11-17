@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-//#from lombok
 @Getter
 @Setter
 @AllArgsConstructor

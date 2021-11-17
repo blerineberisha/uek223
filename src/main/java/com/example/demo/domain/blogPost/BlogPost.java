@@ -13,11 +13,11 @@ public class BlogPost {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    @Column(name = "title", unique = true)
+    @Column(name = "title")
     private String title;
     @Column(name = "author")
     private String author;
-    @Column(name = "text", unique = true)
+    @Column(name = "text")
     private String text;
     @Column(name = "category")
     private String category;

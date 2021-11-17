@@ -1,7 +1,10 @@
 package com.example.demo.domain.appUser;
 
 import com.example.demo.domain.role.Role;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;

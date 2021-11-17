@@ -1,7 +1,9 @@
 package com.example.demo.domain.blogPost;
 
+import com.example.demo.domain.security.BlogPostSecurity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -58,9 +60,9 @@ public class BlogPostController {
      * @param blogPost blog post that is to be saved
      * @return saves blog post to database and returns that blogpost
      */
-    @PostMapping("/")
+    @PostMapping("/post/")
     public BlogPost save(@RequestBody BlogPost blogPost) {
-        blogPost.setAuthor(blogPostService.getCurrentUsername());
+        blogPost.setAuthor(BlogPostSecurity.getCurrentUsername());
         return this.blogPostService.save(blogPost);
     }
 
@@ -71,7 +73,8 @@ public class BlogPostController {
      * @return returns updated blog post
      */
     @PutMapping("/search/{id}")
-    public BlogPost updateBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
+    @PreAuthorize("@blogPostSecurity.hasUserId(#id) || hasAuthority('ADMIN')")
+    public BlogPost updateBlogPost(@PathVariable("id") UUID id, @RequestBody BlogPost blogPost) {
         return this.blogPostService.updateBlogPost(blogPost, id);
     }
 
@@ -80,7 +83,7 @@ public class BlogPostController {
      * @param id id of the blog post that is to be deleted
      */
     @DeleteMapping("/delete/{id}")
-    public void deleteBlogPost(@PathVariable UUID id) {
+    public void deleteBlogPost(@PathVariable("id") UUID id) {
         this.blogPostService.deleteById(id);
     }
 
@@ -90,12 +93,8 @@ public class BlogPostController {
      * @return
      */
     @GetMapping("/{id}")
-    public BlogPost getSinglePost(@PathVariable UUID id) {
+    public BlogPost getSinglePost(@PathVariable("id") UUID id) {
         return this.blogPostService.getBlogPost(id);
     }
 
-    @GetMapping("/current")
-    public String getCurrent() {
-        return blogPostService.getCurrentUsername().toString();
-    }
 }

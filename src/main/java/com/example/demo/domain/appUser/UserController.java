@@ -4,18 +4,23 @@ package com.example.demo.domain.appUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@Transactional(isolation = Isolation.REPEATABLE_READ)
+@Transactional(isolation= Isolation.REPEATABLE_READ)
 public class UserController {
     //    ADD YOUR ENDPOINT MAPPINGS HERE
     private final UserService userService;
     //private UUID currentUserUUID = null;
+
 
     @GetMapping("/")
     public ResponseEntity<String> HomeTest() {

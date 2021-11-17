@@ -78,10 +78,10 @@ class AppStartupRunner implements ApplicationRunner {
         userService.addRoleToUser("default", "READ");
 
         BlogPost blogPost = new BlogPost(null, "Title", userService.getUser("max").getId(), "text", "category");
-        BlogPost blogPost1 = new BlogPost(null, "a", userService.getUser("max").getId(), "a", "category");
-        BlogPost blogPost2 = new BlogPost(null, "b", userService.getUser("max").getId(), "b", "category");
-        BlogPost blogPost3 = new BlogPost(null, "c", userService.getUser("max").getId(), "c", "category");
-        BlogPost blogPost4 = new BlogPost(null, "d", userService.getUser("max").getId(), "d", "category");
+        BlogPost blogPost1 = new BlogPost(null, "Auto", userService.getUser("max").getId(), "a", "category");
+        BlogPost blogPost2 = new BlogPost(null, "Bus", userService.getUser("max").getId(), "b", "category");
+        BlogPost blogPost3 = new BlogPost(null, "title", userService.getUser("max").getId(), "c", "category");
+        BlogPost blogPost4 = new BlogPost(null, "Doktor", userService.getUser("max").getId(), "d", "category");
         BlogPost blogPost5 = new BlogPost(null, "e", userService.getUser("max").getId(), "e", "category");
         BlogPost blogPost6 = new BlogPost(null, "f", userService.getUser("max").getId(), "f", "category");
         BlogPost blogPost7 = new BlogPost(null, "g", userService.getUser("max").getId(), "g", "category");

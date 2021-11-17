@@ -16,18 +16,17 @@ public class BlogPost {
     private UUID id;
     @Column(name = "title")
     private String title;
-    @Column(name = "user_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID user_id;
+    @Column(name = "author")
+    private String author;
     @Column(name = "text")
     private String text;
     @Column(name = "category")
     private String category;
 
-    public BlogPost(UUID id, String title, UUID user_id, String text, String category) {
+    public BlogPost(UUID id, String title, String author, String text, String category) {
         this.id = id;
         this.title = title;
-        this.user_id = user_id;
+        this.author = author;
         this.text = text;
         this.category = category;
     }
@@ -48,12 +47,12 @@ public class BlogPost {
         this.title = title;
     }
 
-    public UUID getUser_id() {
-        return user_id;
+    public String getAuthor() {
+        return author;
     }
 
-    public void setUser_id(UUID user_id) {
-        this.user_id = user_id;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public String getText() {

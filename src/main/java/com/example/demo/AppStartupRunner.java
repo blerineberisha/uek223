@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import com.example.demo.domain.appUser.User;
-import com.example.demo.domain.appUser.UserController;
 import com.example.demo.domain.appUser.UserService;
 import com.example.demo.domain.authority.Authority;
 import com.example.demo.domain.authority.AuthorityRepository;
@@ -9,22 +8,14 @@ import com.example.demo.domain.blogPost.BlogPost;
 import com.example.demo.domain.blogPost.BlogPostService;
 import com.example.demo.domain.role.Role;
 import com.example.demo.domain.role.RoleRepository;
-import com.example.demo.domain.role.RoleServiceImpl;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Set;
-import java.util.UUID;
 
 
 @Component
@@ -77,27 +68,27 @@ class AppStartupRunner implements ApplicationRunner {
         userService.saveUser(new User(null, "default", "default@gmail.com", "", Set.of(admin_role)));
         userService.addRoleToUser("default", "READ");
 
-        BlogPost blogPost = new BlogPost(null, "Title", userService.getUser("max").getId(), "text", "category");
-        BlogPost blogPost1 = new BlogPost(null, "a", userService.getUser("max").getId(), "a", "category");
-        BlogPost blogPost2 = new BlogPost(null, "b", userService.getUser("max").getId(), "b", "category");
-        BlogPost blogPost3 = new BlogPost(null, "c", userService.getUser("max").getId(), "c", "category");
-        BlogPost blogPost4 = new BlogPost(null, "d", userService.getUser("max").getId(), "d", "category");
-        BlogPost blogPost5 = new BlogPost(null, "e", userService.getUser("max").getId(), "e", "category");
-        BlogPost blogPost6 = new BlogPost(null, "f", userService.getUser("max").getId(), "f", "category");
-        BlogPost blogPost7 = new BlogPost(null, "g", userService.getUser("max").getId(), "g", "category");
-        BlogPost blogPost8 = new BlogPost(null, "h", userService.getUser("max").getId(), "h", "category");
-        BlogPost blogPost9 = new BlogPost(null, "i", userService.getUser("max").getId(), "i", "category");
-        BlogPost blogPost10 = new BlogPost(null, "j", userService.getUser("max").getId(), "j", "category");
-        BlogPost blogPost11 = new BlogPost(null, "k", userService.getUser("max").getId(), "k", "category");
-        BlogPost blogPost12 = new BlogPost(null, "l", userService.getUser("max").getId(), "l", "category");
-        BlogPost blogPost13 = new BlogPost(null, "m", userService.getUser("max").getId(), "m", "category");
-        BlogPost blogPost14 = new BlogPost(null, "n", userService.getUser("max").getId(), "n", "category");
-        BlogPost blogPost15 = new BlogPost(null, "o", userService.getUser("max").getId(), "o", "category");
-        BlogPost blogPost16 = new BlogPost(null, "p", userService.getUser("max").getId(), "p", "category");
-        BlogPost blogPost17 = new BlogPost(null, "q", userService.getUser("max").getId(), "q", "category");
-        BlogPost blogPost18 = new BlogPost(null, "r", userService.getUser("max").getId(), "r", "category");
-        BlogPost blogPost19 = new BlogPost(null, "s", userService.getUser("max").getId(), "s", "category");
-        BlogPost blogPost20 = new BlogPost(null, "t", userService.getUser("max").getId(), "t", "category");
+        BlogPost blogPost = new BlogPost(null, "Title", userService.getUser("max").getUsername(), "text", "category");
+        BlogPost blogPost1 = new BlogPost(null, "a", userService.getUser("max").getUsername(), "a", "category");
+        BlogPost blogPost2 = new BlogPost(null, "b", userService.getUser("max").getUsername(), "b", "category");
+        BlogPost blogPost3 = new BlogPost(null, "c", userService.getUser("max").getUsername(), "c", "category");
+        BlogPost blogPost4 = new BlogPost(null, "d", userService.getUser("max").getUsername(), "d", "category");
+        BlogPost blogPost5 = new BlogPost(null, "e", userService.getUser("max").getUsername(), "e", "category");
+        BlogPost blogPost6 = new BlogPost(null, "f", userService.getUser("max").getUsername(), "f", "category");
+        BlogPost blogPost7 = new BlogPost(null, "g", userService.getUser("max").getUsername(), "g", "category");
+        BlogPost blogPost8 = new BlogPost(null, "h", userService.getUser("max").getUsername(), "h", "category");
+        BlogPost blogPost9 = new BlogPost(null, "i", userService.getUser("max").getUsername(), "i", "category");
+        BlogPost blogPost10 = new BlogPost(null, "j", userService.getUser("max").getUsername(), "j", "category");
+        BlogPost blogPost11 = new BlogPost(null, "k", userService.getUser("max").getUsername(), "k", "category");
+        BlogPost blogPost12 = new BlogPost(null, "l", userService.getUser("max").getUsername(), "l", "category");
+        BlogPost blogPost13 = new BlogPost(null, "m", userService.getUser("max").getUsername(), "m", "category");
+        BlogPost blogPost14 = new BlogPost(null, "n", userService.getUser("max").getUsername(), "n", "category");
+        BlogPost blogPost15 = new BlogPost(null, "o", userService.getUser("max").getUsername(), "o", "category");
+        BlogPost blogPost16 = new BlogPost(null, "p", userService.getUser("max").getUsername(), "p", "category");
+        BlogPost blogPost17 = new BlogPost(null, "q", userService.getUser("max").getUsername(), "q", "category");
+        BlogPost blogPost18 = new BlogPost(null, "r", userService.getUser("max").getUsername(), "r", "category");
+        BlogPost blogPost19 = new BlogPost(null, "s", userService.getUser("max").getUsername(), "s", "category");
+        BlogPost blogPost20 = new BlogPost(null, "t", userService.getUser("max").getUsername(), "t", "category");
 
         blogPostService.save(blogPost);
         blogPostService.save(blogPost1);

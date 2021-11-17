@@ -30,19 +30,40 @@ public class BlogPostService {
         return this.blogPostRepository.findAll(Sort.by(Sort.Direction.ASC, field));
     }
 
+    /**
+     *
+     * @param offset start of the page count, if page count is 0, the second page is page 1, etc.
+     * @param pageSize the amount of posts per page
+     * @return returns list with paginated posts
+     */
     public Page<BlogPost> getAllBlogPostWithPagination(int offset, int pageSize){
         Page<BlogPost> blogPosts = this.blogPostRepository.findAll(PageRequest.of(offset, pageSize));
         return blogPosts;
     }
 
+    /**
+     *
+     * @param id id of the blog post that is to be deleted
+     */
     public void deleteById(UUID id){
         this.blogPostRepository.deleteById(id);
     }
 
+    /**
+     *
+     * @param blogPost blog post that is to be saved
+     * @return saves the blog post to the database and returns the blog post
+     */
     public BlogPost save(BlogPost blogPost){
         return this.blogPostRepository.save(blogPost);
     }
 
+    /**
+     *
+     * @param blogPost the blog post that is to be updated
+     * @param id id of the blog post that is to be updated
+     * @return saves the updated blog post to the database and returns the updated blog post
+     */
     public BlogPost updateBlogPost(BlogPost blogPost, UUID id){
         blogPost.setId(id);
         blogPost.setCategory(blogPost.getCategory());

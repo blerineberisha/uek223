@@ -1,6 +1,6 @@
 # uek223
 
-#Vorraussetzungen
+# Vorraussetzungen
 
 Dieses Projetk setzt die Java Version 11 vorraus. 
 Falls Sie diese Version noch nicht haben, installieren Sie diese unter der folgenden URL: 
@@ -17,7 +17,7 @@ Aufsetzen der DB mit folgendem Command:
 Der Username und das Passwort für die Anmeldung sind beide "postgres".
 Um den Username oder das Passwort zu ändern, navigieren Sie zu dem File "application.properties".
 
-#Setup
+# Setup
 Öffnen Sie die Applikation in IntelliJ. 
 Starten Sie das Projekt nachdem alle Files indexiert und das Gradle Projekt gebuildet wurde. Dies erkennen Sie untern rechts an der Taskbar.
 
@@ -29,11 +29,11 @@ Melden Sie sich nun mit dem Username: "james" und dem Passwort: "bond" an.
 Wenn Sie alles richtig eingegeben haben, sollten Sie weitergeleitet werden. 
 Sie sollten einen grossen Titel sehen auf dem Whitelabel Error Page steht. 
 
-#Gewöhnliche Fehler & Lösungen
+# Gewöhnliche Fehler & Lösungen
 * Falls das Projekt nicht startet, überprüfen Sie ob der Docker Container läuft
 * Stellen Sie sicher das eine Verbindung zu der Datenbank besteht
 * Starten Sie das Projekt neu
 
-#Tipps
+# Tipps
 * Sie können Ihrer Datenbank beim Start simulierte Daten hinzufügen, indem Sie ein SQL-Skript namens `data.sql` verwenden, das sich im Ressourcenordner befindet
 * Sie können Statements beim Start ausführen, indem Sie sie zu `AppStartupRunner.run()` . hinzufügen

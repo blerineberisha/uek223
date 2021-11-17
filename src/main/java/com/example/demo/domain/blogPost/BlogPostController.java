@@ -37,7 +37,7 @@ public class BlogPostController {
      * @param field fields of BlogPost, i.e. ID, title, author, etc.
      * @return returns sorted blog posts
      */
-    @GetMapping("/{field}")
+    @GetMapping("/sort/{field}")
     public List<BlogPost> findAllWithSorting(@PathVariable String field) {
         return this.blogPostService.getAllBlogPostsWithSorting(field);
     }

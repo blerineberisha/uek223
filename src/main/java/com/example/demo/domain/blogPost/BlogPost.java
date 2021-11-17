@@ -4,7 +4,6 @@ import com.example.demo.domain.appUser.User;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Set;
 import java.util.UUID;
 
 @NoArgsConstructor
